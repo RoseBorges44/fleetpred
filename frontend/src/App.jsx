@@ -1,6 +1,7 @@
 import { Routes, Route, NavLink } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import VeiculoDetalhe from "./pages/VeiculoDetalhe";
+import Ocorrencia from "./pages/Ocorrencia";
 
 const navItems = [
   { to: "/", icon: "◫", label: "Dashboard" },
@@ -53,7 +54,8 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/veiculo" element={<VeiculoDetalhe />} />
           <Route path="/veiculo/:id" element={<VeiculoDetalhe />} />
-          <Route path="/ocorrencia" element={<Placeholder title="Registro Ocorrência" />} />
+          <Route path="/ocorrencia" element={<Ocorrencia />} />
+          <Route path="/ocorrencia/:veiculoId" element={<Ocorrencia />} />
           <Route path="/diagnostico" element={<Placeholder title="Diagnóstico IA" />} />
           <Route path="/manutencao" element={<Placeholder title="Plano Manutenção" />} />
           <Route path="/relatorios" element={<Placeholder title="Relatórios" />} />
