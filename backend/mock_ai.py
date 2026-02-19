@@ -31,6 +31,39 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "economia_estimada": 4500.00,
             "base_historica": "Baseado em padrões gerais de falha de motor diesel pesado",
         },
+        "ruído anormal": {
+            "componente": "Bronzinas / bielas",
+            "probabilidade_falha": 0.72,
+            "horizonte_dias": 6,
+            "severidade": "alta",
+            "recomendacao": "Ruído anormal no motor pode indicar desgaste de bronzinas ou folga "
+                            "em biela. Parar operação e inspecionar imediatamente.",
+            "pecas_sugeridas": ["Bronzinas", "Biela", "Óleo motor"],
+            "economia_estimada": 15000.00,
+            "base_historica": "Baseado em 203 casos de ruído anormal em motor diesel pesado",
+        },
+        "consumo elevado de óleo": {
+            "componente": "Anéis de pistão / guias de válvula",
+            "probabilidade_falha": 0.60,
+            "horizonte_dias": 20,
+            "severidade": "media",
+            "recomendacao": "Consumo elevado de óleo indica desgaste nos anéis de pistão ou "
+                            "guias de válvula. Monitorar nível e programar revisão.",
+            "pecas_sugeridas": ["Anéis de pistão", "Guias de válvula", "Retentores"],
+            "economia_estimada": 8000.00,
+            "base_historica": "Baseado em 178 casos de consumo elevado de óleo",
+        },
+        "vibração anormal": {
+            "componente": "Coxins do motor / volante",
+            "probabilidade_falha": 0.55,
+            "horizonte_dias": 14,
+            "severidade": "media",
+            "recomendacao": "Verificar coxins do motor e volante do motor. "
+                            "Vibração anormal pode indicar desbalanceamento ou folga.",
+            "pecas_sugeridas": ["Coxins do motor", "Volante motor", "Amortecedor de vibração"],
+            "economia_estimada": 4500.00,
+            "base_historica": "Baseado em 167 casos de vibração anormal em motor",
+        },
         "falha de ignição": {
             "componente": "Bico injetor",
             "probabilidade_falha": 0.75,
@@ -52,6 +85,17 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "pecas_sugeridas": ["Kit reparo turbo", "Mangueira intercooler", "Junta turbo"],
             "economia_estimada": 9200.00,
             "base_historica": "Baseado em 245 casos de perda de potência relacionados a turbo",
+        },
+        "fumaça excessiva": {
+            "componente": "Sistema de injeção",
+            "probabilidade_falha": 0.70,
+            "horizonte_dias": 8,
+            "severidade": "alta",
+            "recomendacao": "Verificar bicos injetores e bomba de alta pressão. "
+                            "Fumaça excessiva indica excesso de combustível ou injeção incorreta.",
+            "pecas_sugeridas": ["Bico injetor", "Bomba alta pressão", "Filtro combustível"],
+            "economia_estimada": 7500.00,
+            "base_historica": "Baseado em 189 casos de fumaça excessiva em diesel pesado",
         },
         "fumaça escura": {
             "componente": "Sistema de injeção",
@@ -77,6 +121,39 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "economia_estimada": 3500.00,
             "base_historica": "Baseado em padrões gerais de desgaste de freios",
         },
+        "ruído ao frear": {
+            "componente": "Pastilhas e discos de freio",
+            "probabilidade_falha": 0.80,
+            "horizonte_dias": 5,
+            "severidade": "alta",
+            "recomendacao": "Substituição imediata de pastilhas. Verificar discos para "
+                            "desgaste abaixo do mínimo e empenamento.",
+            "pecas_sugeridas": ["Kit pastilhas eixo dianteiro", "Discos de freio", "Sensor desgaste"],
+            "economia_estimada": 4200.00,
+            "base_historica": "Baseado em 523 casos de ruído ao frear em freios de caminhão",
+        },
+        "desgaste de lona/pastilha": {
+            "componente": "Pastilhas e discos de freio",
+            "probabilidade_falha": 0.78,
+            "horizonte_dias": 6,
+            "severidade": "alta",
+            "recomendacao": "Substituir pastilhas/lonas. Verificar tambores/discos para "
+                            "desgaste abaixo do limite mínimo de segurança.",
+            "pecas_sugeridas": ["Kit pastilhas", "Lonas de freio", "Discos de freio"],
+            "economia_estimada": 3800.00,
+            "base_historica": "Baseado em 615 casos de desgaste de lona/pastilha",
+        },
+        "aquecimento excessivo": {
+            "componente": "Sistema de freios — atrito",
+            "probabilidade_falha": 0.70,
+            "horizonte_dias": 5,
+            "severidade": "alta",
+            "recomendacao": "Verificar regulagem dos freios, retorno das pinças e sistema pneumático. "
+                            "Aquecimento excessivo pode causar fadiga dos discos e perda de frenagem.",
+            "pecas_sugeridas": ["Pinças de freio", "Flexíveis", "Regulador automático"],
+            "economia_estimada": 5200.00,
+            "base_historica": "Baseado em 198 casos de aquecimento excessivo de freios",
+        },
         "ruído metálico": {
             "componente": "Pastilhas e discos de freio",
             "probabilidade_falha": 0.80,
@@ -89,6 +166,17 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "base_historica": "Baseado em 523 casos de ruído metálico em freios de caminhão",
         },
         "vibração ao frear": {
+            "componente": "Discos de freio",
+            "probabilidade_falha": 0.72,
+            "horizonte_dias": 7,
+            "severidade": "alta",
+            "recomendacao": "Retificar ou substituir discos de freio. Empenamento causa "
+                            "vibração e reduz eficiência de frenagem.",
+            "pecas_sugeridas": ["Discos de freio", "Pastilhas", "Rolamento cubo"],
+            "economia_estimada": 5100.00,
+            "base_historica": "Baseado em 298 casos de vibração ao frear",
+        },
+        "vibração": {
             "componente": "Discos de freio",
             "probabilidade_falha": 0.72,
             "horizonte_dias": 7,
@@ -145,6 +233,39 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "economia_estimada": 5500.00,
             "base_historica": "Baseado em 412 casos de vazamento de líquido de arrefecimento",
         },
+        "vazamento de líquido": {
+            "componente": "Radiador / mangueiras",
+            "probabilidade_falha": 0.70,
+            "horizonte_dias": 6,
+            "severidade": "alta",
+            "recomendacao": "Localizar ponto de vazamento com teste de pressão. "
+                            "Verificar radiador, mangueiras e conexões.",
+            "pecas_sugeridas": ["Radiador", "Kit mangueiras", "Abraçadeiras"],
+            "economia_estimada": 5500.00,
+            "base_historica": "Baseado em 412 casos de vazamento de líquido de arrefecimento",
+        },
+        "ventilador não liga": {
+            "componente": "Ventilador / embreagem viscosa",
+            "probabilidade_falha": 0.75,
+            "horizonte_dias": 3,
+            "severidade": "alta",
+            "recomendacao": "Verificar embreagem viscosa do ventilador, sensor de temperatura "
+                            "e relé. Risco de superaquecimento em operação.",
+            "pecas_sugeridas": ["Embreagem viscosa", "Sensor temperatura", "Relé ventilador"],
+            "economia_estimada": 4200.00,
+            "base_historica": "Baseado em 156 casos de falha no ventilador",
+        },
+        "consumo de líquido": {
+            "componente": "Junta do cabeçote / radiador",
+            "probabilidade_falha": 0.65,
+            "horizonte_dias": 10,
+            "severidade": "alta",
+            "recomendacao": "Consumo de líquido sem vazamento externo pode indicar falha na junta do cabeçote. "
+                            "Realizar teste de pressão e verificar gases no reservatório.",
+            "pecas_sugeridas": ["Junta do cabeçote", "Líquido arrefecimento", "Tampa reservatório"],
+            "economia_estimada": 8500.00,
+            "base_historica": "Baseado em 234 casos de consumo de líquido de arrefecimento",
+        },
     },
     "Transmissão": {
         "default": {
@@ -169,6 +290,39 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "economia_estimada": 11000.00,
             "base_historica": "Baseado em 156 casos de dificuldade de engate",
         },
+        "ruído em marcha": {
+            "componente": "Engrenagens / rolamentos do câmbio",
+            "probabilidade_falha": 0.65,
+            "horizonte_dias": 15,
+            "severidade": "media",
+            "recomendacao": "Verificar nível e qualidade do óleo do câmbio. Ruído em marcha pode "
+                            "indicar desgaste de engrenagens ou rolamentos.",
+            "pecas_sugeridas": ["Óleo câmbio", "Rolamentos", "Engrenagem"],
+            "economia_estimada": 7500.00,
+            "base_historica": "Baseado em 134 casos de ruído em marcha",
+        },
+        "trancos": {
+            "componente": "Sincronizadores / embreagem",
+            "probabilidade_falha": 0.70,
+            "horizonte_dias": 10,
+            "severidade": "alta",
+            "recomendacao": "Trancos na troca de marcha indicam desgaste nos sincronizadores "
+                            "ou regulagem incorreta da embreagem.",
+            "pecas_sugeridas": ["Kit sincronizadores", "Cabo/atuador embreagem", "Óleo câmbio"],
+            "economia_estimada": 9000.00,
+            "base_historica": "Baseado em 187 casos de trancos na transmissão",
+        },
+        "patinação da embreagem": {
+            "componente": "Embreagem",
+            "probabilidade_falha": 0.85,
+            "horizonte_dias": 5,
+            "severidade": "alta",
+            "recomendacao": "Substituir kit embreagem completo. Patinação indica disco "
+                            "desgastado além do limite.",
+            "pecas_sugeridas": ["Kit embreagem completo", "Rolamento atuador", "Volante motor"],
+            "economia_estimada": 8500.00,
+            "base_historica": "Baseado em 389 casos de patinação de embreagem",
+        },
         "patinação": {
             "componente": "Embreagem",
             "probabilidade_falha": 0.85,
@@ -192,6 +346,50 @@ DIAGNOSTICOS_POR_SISTEMA = {
             "pecas_sugeridas": ["Buchas", "Amortecedores", "Pinos e graxeiras"],
             "economia_estimada": 3200.00,
             "base_historica": "Baseado em padrões gerais de desgaste de suspensão",
+        },
+        "instabilidade": {
+            "componente": "Buchas e braços de suspensão",
+            "probabilidade_falha": 0.62,
+            "horizonte_dias": 12,
+            "severidade": "media",
+            "recomendacao": "Verificar buchas, braços e barra estabilizadora. "
+                            "Instabilidade pode indicar folgas nos pontos de fixação.",
+            "pecas_sugeridas": ["Buchas", "Barra estabilizadora", "Braço de suspensão"],
+            "economia_estimada": 3600.00,
+            "base_historica": "Baseado em 234 casos de instabilidade em suspensão pneumática",
+        },
+        "ruído em irregularidades": {
+            "componente": "Amortecedores",
+            "probabilidade_falha": 0.68,
+            "horizonte_dias": 10,
+            "severidade": "media",
+            "recomendacao": "Substituir amortecedores desgastados. Ruído em irregularidades "
+                            "indica perda de vedação ou desgaste interno.",
+            "pecas_sugeridas": ["Amortecedores", "Batentes", "Coifas"],
+            "economia_estimada": 4200.00,
+            "base_historica": "Baseado em 312 casos de ruído em suspensão",
+        },
+        "desgaste de molas": {
+            "componente": "Molas / feixes de mola",
+            "probabilidade_falha": 0.58,
+            "horizonte_dias": 15,
+            "severidade": "media",
+            "recomendacao": "Inspecionar molas parabólicas e feixes. Desgaste de molas causa "
+                            "redução da capacidade de carga e altura irregular.",
+            "pecas_sugeridas": ["Feixe de molas", "Abraçadeiras", "Calço de mola"],
+            "economia_estimada": 3800.00,
+            "base_historica": "Baseado em 189 casos de desgaste de molas em caminhão pesado",
+        },
+        "inclinação lateral": {
+            "componente": "Barra estabilizadora / bolsas de ar",
+            "probabilidade_falha": 0.64,
+            "horizonte_dias": 8,
+            "severidade": "alta",
+            "recomendacao": "Verificar barra estabilizadora, bolsas de ar e válvula niveladora. "
+                            "Inclinação lateral compromete a estabilidade e segurança.",
+            "pecas_sugeridas": ["Barra estabilizadora", "Bolsa de ar", "Válvula niveladora"],
+            "economia_estimada": 5400.00,
+            "base_historica": "Baseado em 156 casos de inclinação lateral",
         },
         "vibração": {
             "componente": "Amortecedores / bolsas de ar",
@@ -245,10 +443,14 @@ def generate_mock_diagnostic(
     mapeamento = DIAGNOSTICOS_POR_SISTEMA.get(sistema, {})
 
     # Buscar variação mais específica pelo primeiro sintoma que bater
+    # Comparação case-insensitive: o formulário envia "Temperatura elevada",
+    # mas as chaves do mapeamento são em minúsculas
+    mapeamento_lower = {k.lower(): v for k, v in mapeamento.items()}
     diagnostico = None
     for sintoma in sintomas:
-        if sintoma in mapeamento:
-            diagnostico = mapeamento[sintoma]
+        match = mapeamento_lower.get(sintoma.lower())
+        if match:
+            diagnostico = match
             break
 
     if diagnostico is None:
