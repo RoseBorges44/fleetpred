@@ -1,2 +1,11 @@
-prompt-claude-code.md
-"frontend/dist/" 
+__pycache__/
+*.pyc
+*.db
+node_modules/
+frontend/dist/
+.env
+venv/
+.vscode/
+.idea/
+.DS_Store
+*.log
