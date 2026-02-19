@@ -2,6 +2,9 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import VeiculoDetalhe from "./pages/VeiculoDetalhe";
 import Ocorrencia from "./pages/Ocorrencia";
+import Diagnostico from "./pages/Diagnostico";
+import PlanoManutencao from "./pages/PlanoManutencao";
+import Relatorios from "./pages/Relatorios";
 
 const navItems = [
   { to: "/", icon: "◫", label: "Dashboard" },
@@ -11,15 +14,6 @@ const navItems = [
   { to: "/manutencao", icon: "▦", label: "Plano Manutenção" },
   { to: "/relatorios", icon: "◰", label: "Relatórios" },
 ];
-
-function Placeholder({ title }) {
-  return (
-    <div className="placeholder-page">
-      <h1>{title}</h1>
-      <p className="text-muted">Em construção...</p>
-    </div>
-  );
-}
 
 export default function App() {
   return (
@@ -56,9 +50,10 @@ export default function App() {
           <Route path="/veiculo/:id" element={<VeiculoDetalhe />} />
           <Route path="/ocorrencia" element={<Ocorrencia />} />
           <Route path="/ocorrencia/:veiculoId" element={<Ocorrencia />} />
-          <Route path="/diagnostico" element={<Placeholder title="Diagnóstico IA" />} />
-          <Route path="/manutencao" element={<Placeholder title="Plano Manutenção" />} />
-          <Route path="/relatorios" element={<Placeholder title="Relatórios" />} />
+          <Route path="/diagnostico" element={<Diagnostico />} />
+          <Route path="/diagnostico/:id" element={<Diagnostico />} />
+          <Route path="/manutencao" element={<PlanoManutencao />} />
+          <Route path="/relatorios" element={<Relatorios />} />
         </Routes>
       </main>
     </div>
