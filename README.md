@@ -2,7 +2,7 @@
 
 > Avaliação Intermediária · IA Generativa · UniSENAI
 
-**Endpoint:** [https://f6bf-179-48-116-161.ngrok-free.app/](https://f6bf-179-48-116-161.ngrok-free.app/)  
+**Endpoint:** [https://aec0-179-48-116-232.ngrok-free.app/](https://aec0-179-48-116-232.ngrok-free.app/)  
 **Repositório:** https://github.com/RoseBorges44/fleetpred
 
 ---
