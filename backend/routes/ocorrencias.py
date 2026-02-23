@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from database import get_connection
 from mock_ai import generate_mock_diagnostic
+from agents.orchestrator import orchestrate
 
 router = APIRouter(prefix="/api/ocorrencias", tags=["ocorrências"])
 
@@ -67,12 +68,23 @@ def criar_ocorrencia(payload: OcorrenciaCreate):
     )
     ocorrencia_id = cursor.lastrowid
 
-    # 2. Gerar diagnóstico mock (será substituído por LLM)
-    diag = generate_mock_diagnostic(
-        sistema=payload.sistema,
-        sintomas=payload.sintomas,
-        veiculo_km=payload.km_ocorrencia,
-    )
+    # 2. Gerar diagnóstico via multi-agente LLM (fallback: mock)
+    try:
+        diag = orchestrate(
+            veiculo_id=payload.veiculo_id,
+            sistema=payload.sistema,
+            sintomas=payload.sintomas,
+            descricao=payload.descricao,
+            severidade=payload.severidade,
+            km=payload.km_ocorrencia,
+        )
+    except Exception as e:
+        print(f"LLM falhou, usando mock: {e}")
+        diag = generate_mock_diagnostic(
+            sistema=payload.sistema,
+            sintomas=payload.sintomas,
+            veiculo_km=payload.km_ocorrencia,
+        )
 
     # 3. Salvar diagnóstico
     cursor = conn.execute(
