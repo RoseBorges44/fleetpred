@@ -5,7 +5,11 @@ node_modules/
 frontend/dist/
 .env
 venv/
+.venv
 .vscode/
 .idea/
 .DS_Store
 *.log
+frontend/dist/
+.env 
+.claude/ 
