@@ -10,7 +10,7 @@ load_dotenv(os.path.join(_backend_dir, ".env"))
 
 def get_llm(temperature=0.2):
     return ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash",
+        model="gemini-2.5-flash",
         temperature=temperature,
         google_api_key=os.getenv("GEMINI_API_KEY"),
     )

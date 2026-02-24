@@ -27,17 +27,49 @@ class OrchestratorState(TypedDict):
     resultado_final: dict
 
 
-def _parse_json(text: str) -> dict:
+def _safe_dict(value, label="") -> dict:
+    """Converte qualquer retorno de agente/LLM em dict de forma segura."""
+    if isinstance(value, dict):
+        return value
+
+    if isinstance(value, list):
+        print(f"[parsing:{label}] recebeu list (len={len(value)}), extraindo primeiro elemento")
+        if not value:
+            return {}
+        return _safe_dict(value[0], label)
+
+    if not isinstance(value, str):
+        print(f"[parsing:{label}] tipo inesperado: {type(value).__name__}, convertendo para str")
+        value = str(value)
+
+    # Remove blocos markdown ```json ... ``` ou ``` ... ```
+    cleaned = re.sub(r"^```(?:json)?\s*\n?", "", value.strip())
+    cleaned = re.sub(r"\n?```\s*$", "", cleaned).strip()
+
+    # Tenta parse direto
     try:
-        return json.loads(text)
-    except json.JSONDecodeError:
-        match = re.search(r"\{.*\}", text, re.DOTALL)
-        if match:
-            try:
-                return json.loads(match.group())
-            except json.JSONDecodeError:
-                pass
+        parsed = json.loads(cleaned)
+        if isinstance(parsed, dict):
+            return parsed
+        if isinstance(parsed, list) and parsed:
+            print(f"[parsing:{label}] JSON parseado era list, pegando primeiro elemento")
+            return parsed[0] if isinstance(parsed[0], dict) else {}
         return {}
+    except (json.JSONDecodeError, TypeError):
+        pass
+
+    # Tenta extrair {...} do texto com regex
+    match = re.search(r"\{.*\}", cleaned, re.DOTALL)
+    if match:
+        try:
+            parsed = json.loads(match.group())
+            if isinstance(parsed, dict):
+                return parsed
+        except (json.JSONDecodeError, TypeError):
+            pass
+
+    print(f"[parsing:{label}] FALHOU — conteúdo recebido: {value[:200]}")
+    return {}
 
 
 # ── Graph nodes ──────────────────────────────────────────────────────────
@@ -55,40 +87,56 @@ def classificar_node(state: OrchestratorState) -> dict:
 
 
 def diagnosticar_node(state: OrchestratorState) -> dict:
-    result = diagnostician.run(
-        sistema=state["sistema"],
-        sintomas=state["sintomas"],
-        veiculo_id=state["veiculo_id"],
-        km_atual=state["km"],
-    )
-    return {"diagnostico": result}
+    try:
+        result = diagnostician.run(
+            sistema=state["sistema"],
+            sintomas=state["sintomas"],
+            veiculo_id=state["veiculo_id"],
+            km_atual=state["km"],
+        )
+        return {"diagnostico": _safe_dict(result, "diagnosticador")}
+    except Exception as e:
+        print(f"[diagnosticar] ERRO: {type(e).__name__}: {e}")
+        return {"diagnostico": {}}
 
 
 def analisar_historico_node(state: OrchestratorState) -> dict:
-    result = historian.run(
-        sistema=state["sistema"],
-        sintomas=state["sintomas"],
-        veiculo_id=state["veiculo_id"],
-    )
-    return {"historico": result}
+    try:
+        result = historian.run(
+            sistema=state["sistema"],
+            sintomas=state["sintomas"],
+            veiculo_id=state["veiculo_id"],
+        )
+        return {"historico": _safe_dict(result, "historiador")}
+    except Exception as e:
+        print(f"[analisar_historico] ERRO: {type(e).__name__}: {e}")
+        return {"historico": {}}
 
 
 def planejar_node(state: OrchestratorState) -> dict:
-    result = planner.run(
-        diagnostico=state["diagnostico"],
-        historico=state["historico"],
-    )
-    return {"planejamento": result}
+    try:
+        result = planner.run(
+            diagnostico=state["diagnostico"],
+            historico=state["historico"],
+        )
+        return {"planejamento": _safe_dict(result, "planejador")}
+    except Exception as e:
+        print(f"[planejar] ERRO: {type(e).__name__}: {e}")
+        return {"planejamento": {}}
 
 
 def analisar_financeiro_node(state: OrchestratorState) -> dict:
-    componente = state["diagnostico"].get("componente", state["sistema"])
-    result = financial.run(
-        sistema=state["sistema"],
-        componente=componente,
-        modelo_veiculo=state["modelo_veiculo"],
-    )
-    return {"financeiro": result}
+    try:
+        componente = state["diagnostico"].get("componente", state["sistema"])
+        result = financial.run(
+            sistema=state["sistema"],
+            componente=componente,
+            modelo_veiculo=state["modelo_veiculo"],
+        )
+        return {"financeiro": _safe_dict(result, "financeiro")}
+    except Exception as e:
+        print(f"[analisar_financeiro] ERRO: {type(e).__name__}: {e}")
+        return {"financeiro": {}}
 
 
 def decidir_rota(state: OrchestratorState) -> str:
@@ -119,7 +167,7 @@ def consolidar_node(state: OrchestratorState) -> dict:
     ]
 
     response = llm.invoke(messages)
-    result = _parse_json(response.content)
+    result = _safe_dict(response.content, "consolidar")
     return {"resultado_final": result}
 
 
