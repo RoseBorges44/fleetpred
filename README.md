@@ -4,7 +4,7 @@
 
 **Repositório:** https://github.com/RoseBorges44/fleetpred
 
-**Acesse em:** http://192.168.0.121:5173/
+**Acesse em:** https://3899-179-48-116-187.ngrok-free.app/
 
 ---
 
