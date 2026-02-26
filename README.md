@@ -4,6 +4,8 @@
 
 **Repositório:** https://github.com/RoseBorges44/fleetpred
 
+**Acesse em:** http://192.168.0.121:5173/
+
 ---
 
 ## O Problema
